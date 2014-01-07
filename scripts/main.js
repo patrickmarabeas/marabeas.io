@@ -1,0 +1,1 @@
+var module = angular.module( 'pulsedev', ['ngFitText', 'ngLettering', 'ngDiscreteUI', 'ngScrollSpy'] );

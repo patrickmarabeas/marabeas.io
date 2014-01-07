@@ -1,0 +1,71 @@
+/****************************************************************
+* triangles
+****************************************************************/
+
+.triangle(@d,@c,@w,@h) when (@d = top) {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 @w/2 @h @w/2;
+	border-color: transparent transparent @c transparent;
+}
+
+.triangle(@d,@c,@w,@h) when (@d = top-right) {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 @w @h 0;
+	border-color: transparent @c transparent transparent;
+}
+
+.triangle(@d,@c,@w,@h) when (@d = right) {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: @h/2 0 @h/2 @w;
+	border-color: transparent transparent transparent @c;
+}
+
+.triangle(@d,@c,@w,@h) when (@d = bottom-right) {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 0 @h @w;
+	border-color: transparent transparent @c transparent;
+}
+
+.triangle(@d,@c,@w,@h) when (@d = bottom) {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: @h @w/2 0 @w/2;
+	border-color: @c transparent transparent transparent;
+}
+
+.triangle(@d,@c,@w,@h) when (@d = bottom-left) {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: @h 0 0 @w;
+	border-color: transparent transparent transparent @c;
+}
+
+.triangle(@d,@c,@w,@h) when (@d = left) {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: @h/2 @w @h/2 0;
+	border-color: transparent @c transparent transparent;
+}
+
+.triangle(@d,@c,@w,@h) when (@d = top-left) {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: @h @w 0 0;
+	border-color: @c transparent transparent transparent;
+}
+
+/* top; top-right; right; bottom-right; bottom; bottom-left; left; top-left */
+/* direction, color, width, height */
+/* .triangle(top-left, #007bff, 50px, 40px); */

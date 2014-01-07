@@ -1,0 +1,225 @@
+/*****************************************************************
+* CSS normalisation
+*****************************************************************/
+
+@import "normalize";
+
+*, *:before, &:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* Remove the gap between images, videos, audio and canvas and the bottom of their containers: h5bp.com/i/440 */
+audio, canvas, img, svg, video {
+	vertical-align: middle;
+}
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+textarea {
+	resize: vertical;
+}
+
+a:hover, a:visited, a:link, a:active, input  {
+	outline:0; /*removes the dotted border*/
+}
+
+/*****************************************************************
+* Gridless.gs
+*****************************************************************/
+
+@import "gridless";
+@min-width: 960;
+@columns: 12;
+@gutter-width: 20;
+
+.full_width {
+	width: 100%;
+	clear: both;
+	overflow: hidden;
+}
+
+.page {
+	/* determined by the column # and width */
+	max-width: @min-width + 0px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+
+/****************************************************************
+* Helpers & mixins
+****************************************************************/
+
+@import "mixless/browser";
+@import "mixless/shapes";
+@import "mixless/textures";
+
+/****************************************************************
+* Printing
+****************************************************************/
+
+@media print {
+	* {
+		background: transparent !important;
+		color: #000 !important; /* Black prints faster: h5bp.com/s */
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	a {
+		text-decoration: underline;
+
+		&[href]:after {
+			content: " (" attr(href) ")";
+		}
+
+		&[href^="javascript:"]:after {
+			content: "";
+		}
+
+		&[href^="#"]:after {
+			content: "";
+		}
+	}
+
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
+
+	pre, blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+
+	thead {
+		display: table-header-group; /* h5bp.com/t */
+	}
+
+	tr,	img {
+		page-break-inside: avoid;
+	}
+
+	img {
+		max-width: 100% !important;
+	}
+
+	@page {
+		margin: 0.5cm;
+	}
+
+	p, h2, h3 {
+		orphans: 3;
+		widows: 3;
+	}
+
+	h2,	h3 {
+		page-break-after: avoid;
+	}
+}
+
+/*****************************************************************
+* Variables
+*****************************************************************/
+
+@baseURL: '../styles/';
+
+@highlight1: #c60e0e; /*red*/
+
+@highlight2: #355769; /*blue*/
+
+@greyLight: #999; /*light-grey*/
+@greyDark: #1d1d1d; /*dark-grey*/
+
+@white: #fff; /*white*/
+@black: #000; /*black*/
+
+
+@offset: 250px;
+@navigationHeight: 40px;
+
+
+@font-face {
+	font-family: "Lobster";
+	src: url('@{baseURL}fonts/Lobster_1.3-webfont.eot');
+	src: url('@{baseURL}fonts/Lobster_1.3-webfont.eot?#iefix') format('embedded-opentype'),
+		url('@{baseURL}fonts/Lobster_1.3-webfont.woff') format('woff'),
+		url('@{baseURL}fonts/Lobster_1.3-webfont.ttf') format('truetype'),
+		url('@{baseURL}fonts/Lobster_1.3-webfont.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	@font-face {
+		font-family: 'Lobster';
+		src: url('@{baseURL}fonts/Lobster_1.3-webfont.svg') format('svg');
+	}
+}
+
+@font-face {
+	font-family: "FontAwesome";
+	src: url('@{baseURL}fonts/fontawesome-webfont.eot');
+	src: url('@{baseURL}fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('@{baseURL}fonts/fontawesome-webfont.woff') format('woff'),
+		 url('@{baseURL}fonts/fontawesome-webfont.ttf') format('truetype'),
+		 url('@{baseURL}fonts/fontawesome-webfont.svg#FontAwesome') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/****************************************************************
+* Site styles
+****************************************************************/
+
+html {
+	font-size: 10px; /*specify 10px over 62.5% to ensure we are dealign with 10px*/
+	font-family: Verdana, sans-serif;
+}
+
+body {
+	font-size: 13px; font-size: 1.3rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	 margin: 0;
+	 padding: 0;
+	 font-weight: normal;
+	 font-family: Arial, Helvetica, sans-serif;
+}
+
+hr {
+	color: @greyDark;
+	background-color: @greyDark;
+}
+
+/*http://css-tricks.com/centering-in-the-unknown/*/
+/*div needs the class 'vertAlignParent'*/
+.vertAlignParent:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+/*can be used as a class or mixin*/
+.vertAlignChild {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.clear {
+	clear: both;
+}
+
+
+
+/********************************/
+
+@import "content";
+
+/********************************/
