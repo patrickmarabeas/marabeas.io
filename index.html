@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
 	<!--<base href="http://pulse-dev.com"/>-->
 	<meta name="description" content="Patrick Marabeas - Web Developer" />
 	<meta name="keywords" content="Patrick Marabeas web development developer UI UX frontend" />
@@ -19,8 +19,7 @@
 	<!--<script type="text/javascript" src="scripts/css3-mediaqueries.js"></script>-->
 	<!-- AngularJS -->
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-resource.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-animate.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-touch.js"></script>
 	<!-- Modernizer -->
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 	<!-- Project Files -->
@@ -30,8 +29,6 @@
 	<script type="text/javascript" src="scripts/ng-ScrollSpy.js"></script>
 
 	<script type="text/javascript" src="scripts/main.js"></script>
-
-
 
 	<!-- LESS.js -->
 	<!-- Server Side -->
@@ -44,45 +41,89 @@
 
 </head>
 
-<body>
+<body data-ng-controller="tester"
+	  data-ng-swipe-right="drawerOpen()"
+	  data-ng-swipe-left="drawerClose()"
+	  data-ng-class="{open:drawer}">
 
-	<div id="header">
+	<div id="drawerNav" data-ng-click="drawerToggle()">
+		<i class="fa fa-bars"></i>
+		<h1>marabeas.io</h1>
+	</div>
 
-		<div class="page">
+	<div id="drawer">
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+	</div>
 
-			<div class="title"><h1 data-lettering="words" data-fittext="0.7">Patrick Marabeas Web Developer</h1></div>
+	<div id="content">
 
-			<div class="about">
+		<div id="header">
 
-				<span class="location">Melbourne, Australia</span>
+			<div class="page">
 
-				<span class="contact">patrick@marabeas.io</span>
+				<div class="title"><h1 data-lettering="words" data-fittext="0.7">Patrick Marabeas Web Developer</h1></div>
 
-				<div class="availabilityContainer" data-fittext="0.93" data-lettering="words">Employment / Freelance</div>
+				<div class="about">
 
-				<span class="introduction" ng-include="'partials/introductionParagraph.html'"></span>
+					<span class="location">Melbourne, Australia</span>
+
+					<span class="contact">patrick@marabeas.io</span>
+
+					<div class="availabilityContainer" data-fittext="0.93" data-lettering="words">Employment / Freelance</div>
+
+					<span class="introduction" ng-include="'partials/introductionParagraph.html'"></span>
+
+				</div>
 
 			</div>
 
 		</div>
 
-	</div>
+		<div id="banner">
 
+			<div class="page">
 
+				<h2 data-lettering="lines" data-fittext="0.7" data-fittext-min="50" data-fittext-max="60">
+					Crafting <br/>
+					Serious Websites <br/>
+					Of All Sizes
+				</h2>
 
-	<div id="banner">
+			</div>
 
-		<div class="page">
+		</div>
 
-			<h2 data-lettering="lines" data-fittext="0.7" data-fittext-min="50" data-fittext-max="60">
-				Crafting <br/>
-				Serious Websites <br/>
-				Of All Sizes
-			</h2>
+		<div id="filler">
 
 		</div>
 
 	</div>
+
+
+
+
+
 
 
 
