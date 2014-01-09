@@ -19,6 +19,21 @@ module.controller( 'tester', [ '$scope', function( $scope ) {
 
 }]);
 
+
+module.directive( 'scrollto', [ '$location', '$anchorScroll', function( $location, $anchorScroll ) {
+	return {
+		link: function( scope, element, attrs ) {
+
+			angular.element( element ).bind( 'click', function() {
+
+				$anchorScroll();
+
+			});
+
+		}
+	}
+}]);
+
 // DIRECTIVE TO STOP SCROLLING ON MOBILE - DOESN'T STOP SCROLLING OF PAGE WHEN THE DRAWER CONTENT HAS REACHED BOTTOM
 //module.directive( 'content', [ function() {
 //	return {
