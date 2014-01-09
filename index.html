@@ -44,7 +44,9 @@
 <body data-ng-controller="tester"
 	  data-ng-swipe-right="drawerOpen()"
 	  data-ng-swipe-left="drawerClose()"
-	  data-ng-class="{open:drawer}">
+	  data-ng-class="{open:drawer}"
+	  data-scrollspy
+	  data-scrollspy-offset="200">
 
 	<div id="drawerNav" data-ng-click="drawerToggle()">
 		<i class="fa fa-bars"></i>
@@ -55,9 +57,10 @@
 
 		<ul>
 			<li class="item"><a href="#">top</a></li>
-			<li class="item"><a href="#">navigation element</a></li>
-			<li class="item"><a href="#">element</a></li>
-			<li class="item"><a href="#">something</a></li>
+			<li class="item" data-spy="one"><a href="#">stuff</a></li>
+			<li class="item" data-spy="two"><a href="#">navigation element</a></li>
+			<li class="item" data-spy="three"><a href="#">element</a></li>
+			<li class="item" data-spy="four"><a href="#">something</a></li>
 			<li class="item">
 				<a href="http://stackoverflow.com/users/1455709/patrick" target="_blank"><i class="fa fa-stack-overflow"></i> Stack Overflow</a>
 			</li>
@@ -109,9 +112,10 @@
 
 		</div>
 
-		<div id="filler">
-
-		</div>
+		<div id="one"></div>
+		<div id="two"></div>
+		<div id="three"></div>
+		<div id="four"></div>
 
 	</div>
 
