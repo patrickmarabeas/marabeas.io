@@ -1,11 +1,19 @@
 html {
 	overflow-x: hidden;
+
+//	height: 100%; //disables fullscreen on android because the sites only 100%, you cant scroll - duh.
+//	&.open {
+//		overflow: hidden;
+//	}
 }
 
 body {
 	overflow-x: hidden;
-//	position:fixed;
 	background-color: @black + 20%;
+
+//	&.open {
+//		overflow: hidden;
+//	}
 }
 
 
@@ -14,12 +22,20 @@ body {
 	position: fixed;
 	left: 0;
 	top: @drawerNavH;
+	overflow-y: scroll;
 
+	padding-bottom: 50px; //required to account for the top bar
+
+	//since scrollbars don't auto disappear when they aren't needed in the first place
+	&::-webkit-scrollbar {
+		width: 0 !important
+	}
 
 
 	ul {
 		margin: 0;
 		padding: 0;
+		list-style: none;
 
 		li.item {
 			margin: 0;
@@ -28,16 +44,12 @@ body {
 			width: @drawerW;
 			//height: @drawerItemH;
 			background-color: @black + 20%;
-			border-top: 1px solid white;
+			border-bottom: 1px solid grey;
 
 			&.active {
 				a {
-					color: @highlight1;
+					background-color: @highlight1;
 				}
-			}
-
-			&:last-child {
-				border-bottom: 1px solid white;
 			}
 
 			a {
@@ -56,8 +68,6 @@ body {
 			}
 		}
 	}
-
-
 }
 
 #content {
@@ -83,6 +93,8 @@ body {
 			-moz-transform: translateX(@drawerW);
 			-webkit-transform: translateX(@drawerW);
 			transform: translateX(@drawerW);
+
+//			.opacity(0.5);
 		}
 	}
 }
@@ -98,6 +110,10 @@ body {
 	display: none;
 	color: white;
 	background-color: @black + 20%;
+	body.open & {
+		background-color: @highlight1;
+	}
+	border-bottom: 1px solid @black;
 
 	position: fixed;
 	top: 0;
