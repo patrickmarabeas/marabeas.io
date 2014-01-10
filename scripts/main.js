@@ -34,19 +34,40 @@ module.directive( 'scrollto', [ '$location', '$anchorScroll', function( $locatio
 	}
 }]);
 
-// DIRECTIVE TO STOP SCROLLING ON MOBILE - DOESN'T STOP SCROLLING OF PAGE WHEN THE DRAWER CONTENT HAS REACHED BOTTOM
-//module.directive( 'content', [ function() {
-//	return {
-//		link: function( scope, element, attrs ) {
-//
-//			angular.element( element ).bind("touchmove", function( e ) {
-//
-//				if( scope.drawer == true ) {
-//					e.preventDefault();
-//				}
-//
-//			});
-//
-//		}
-//	}
-//}]);
+
+module.directive( 'content', [ function() {
+	return {
+		link: function( scope, element, attrs ) {
+
+
+		}
+	}
+}]);
+
+
+module.directive( 'drawer', [ function() {
+	return {
+		link: function( scope, element, attrs ) {
+
+			scope.$watch( 'drawer', function() {
+
+				if( scope.drawer == true ) {
+
+					angular.element( window ).bind('touchmove', function( e ){
+						e.preventDefault();
+					});
+
+					angular.element( element ).bind("touchmove", function( e ) {
+						e.stopPropagation();
+					});
+
+				}
+				else {
+					angular.element( window ).unbind('touchmove');
+				}
+
+			});
+
+		}
+	}
+}]);
