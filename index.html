@@ -48,12 +48,9 @@
 	  data-scrollspy
 	  data-scrollspy-offset="200">
 
-	<!--sounds like this is required for some browsers which are unable to hide overflow on html/body-->
-	<!--http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers-->
-	<div class="overflowWrapper">
+	<div id="overflowWrapper">
 
-
-		<div id="drawerNav" data-ng-click="drawerToggle()">
+		<div id="topBar" data-ng-click="drawerToggle()">
 			<i class="fa fa-bars"></i>
 			<h1>marabeas.io</h1>
 		</div>
@@ -80,64 +77,54 @@
 
 		</div>
 
+		<div id="content"
+			 data-content
+			 data-ng-swipe-right="drawerOpen()"
+			 data-ng-swipe-left="drawerClose()"
+			 data-ng-click="drawerClose()">
 
-		<div class="contentWrapper">
+			<div id="header">
 
-			<div id="content"
-				 data-content
-				 data-ng-swipe-right="drawerOpen()"
-				 data-ng-swipe-left="drawerClose()"
-				 data-ng-click="drawerClose()">
+				<div class="page">
 
-				<div id="header">
+					<div class="title"><h1 data-lettering="words" data-fittext="0.7">Patrick Marabeas Web Developer</h1></div>
 
-					<div class="page">
+					<div class="about">
 
-						<div class="title"><h1 data-lettering="words" data-fittext="0.7">Patrick Marabeas Web Developer</h1></div>
+						<span class="location">Melbourne, Australia</span>
 
-						<div class="about">
+						<span class="contact">patrick@marabeas.io</span>
 
-							<span class="location">Melbourne, Australia</span>
+						<div class="availabilityContainer" data-fittext="0.93" data-lettering="words">Employment / Freelance</div>
 
-							<span class="contact">patrick@marabeas.io</span>
-
-							<div class="availabilityContainer" data-fittext="0.93" data-lettering="words">Employment / Freelance</div>
-
-							<span class="introduction" ng-include="'partials/introductionParagraph.html'"></span>
-
-						</div>
+						<span class="introduction" ng-include="'partials/introductionParagraph.html'"></span>
 
 					</div>
 
 				</div>
-
-				<div id="banner">
-
-					<div class="page">
-
-						<h2 data-lettering="lines" data-fittext="0.7" data-fittext-min="50" data-fittext-max="60">
-							Crafting <br/>
-							Serious Websites <br/>
-							Of All Sizes
-						</h2>
-
-					</div>
-
-				</div>
-
-				<div id="one"></div>
-				<div id="two"></div>
-				<div id="three"></div>
-				<div id="four"></div>
-
-
-
 
 			</div>
 
+			<div id="banner">
+
+				<div class="page">
+
+					<h2 data-lettering="lines" data-fittext="0.7" data-fittext-min="50" data-fittext-max="60">
+						Crafting <br/>
+						Serious Websites <br/>
+						Of All Sizes
+					</h2>
+
+				</div>
+
+			</div>
+
+			<div id="one"></div>
+			<div id="two"></div>
+			<div id="three"></div>
+			<div id="four"></div>
 
 		</div>
-
 
 	</div>
 

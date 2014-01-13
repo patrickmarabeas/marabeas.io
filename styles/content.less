@@ -1,148 +1,130 @@
-//seems as though all scrollable elements have to have a wrapper around them, otherwise the scroll propogates to the parent
-//who you want to hide the overflow on... ie, all elements that scroll need to have an overflow hidden wrapper to still scroll
-//but for the page to not scroll
+@topBarH: 35px;
+@drawerW: 250px;
+@drawerItemH: 50px;
 
+// NAVIGATION DRAWER STRUCTURAL STYLING
 html {
-	height: 100%;
 	width: 100%;
 	overflow-x: hidden;
 	overflow-y: scroll;
 
-	&.open {
-		overflow: hidden;
-	}
-}
+	body {
+		width: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
 
-body {
-	width: 100%;
-	overflow-x: hidden;
-	overflow-y: auto;
-	background-color: @black + 20%;
+		#overflowWrapper {
 
-	&.open {
-//		overflow: hidden; //doesn't seem necessary
-	}
-}
+			#topBar {
+				height: @topBarH;
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 100;
+				@media @mq-mobile {
+					display: block;
+				}
+			}
 
-//sounds like this is required for some browsers which are unable to hide overflow on html/body
-//http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers
-.overflowWrapper {
-	body.open & {
-		overflow: hidden;
-	}
-}
+			#drawer {
+				height: 100%; //check if needed
+				position: fixed;
+				top: @topBarH;
+				left: 0;
+				padding-bottom: 50px; //required to account for the browser's bar
+			}
 
+			#content {
+				height: 100%; //massive performance increase for animation
+				width: 100%; //massive performance increase for animation
+				overflow-x: hidden;
+				overflow-y: auto;
 
-.contentWrapper {
-	white-space: nowrap;
-	position: relative;
-	width: 100%;
-	height: 100%;
+				.transition(all,0.1s,linear,0s);
+				.transform( translate3d(0,0,0) );
 
-	overflow-x: hidden;
-	overflow-y: auto;
+				* { // improve animation performance
+					.transform( translateZ(0) );
+				}
+			}
 
-	body.open & {
-		overflow: hidden;
-		left: 0;
-	}
-
-	.transition(all,0.1s,linear,0s);
-	-webkit-transform: translate3d(0,0,0);
-	-moz-transform: translate3d(0,0,0);
-	-ms-transform: translate3d(0,0,0);
-	-o-transform: translate3d(0,0,0);
-	transform: translate3d(0,0,0);
-
-	* {
-		-webkit-transform: translateZ(0);
+		}
 	}
 
 	@media @mq-mobile {
 
-		body.open & {
-			-o-transform: translateX(@drawerW);
-			-ms-transform: translateX(@drawerW);
-			-moz-transform: translateX(@drawerW);
-			-webkit-transform: translateX(@drawerW);
-			transform: translateX(@drawerW);
+		&.open {
+			overflow: hidden;
 
-			height: 100%;
-		}
+			body {
+				#overflowWrapper {
+					// seems like some browsers don't accept overflow:hidden on html/body
+					// http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers
+					overflow: hidden;
 
-		body.open2 & {
-
-			-o-transform: translateX((@drawerW *-1)/3);
-			-ms-transform: translateX((@drawerW *-1)/3);
-			-moz-transform: translateX((@drawerW *-1)/3);
-			-webkit-transform: translateX((@drawerW *-1)/3);
-			transform: translateX((@drawerW *-1)/3);
-
+					#content {
+						overflow: hidden;
+						.transform( translateX(@drawerW) );
+					}
+				}
+			}
 		}
 	}
+}
+// ! NAVIGATION DRAWER STRUCTURAL STYLING
 
 
+// GENERAL STYLING
+#topBar {
+	.column(12,none);
+	color: white;
+	border-bottom: 1px solid @black;
+	background-color: @greyDark;
+	body.open & {
+		background-color: @red;
+	}
+
+	i {
+		color: white;
+		font-size: 25px;
+		line-height: @topBarH;
+		cursor: pointer;
+		padding: 5px 10px;
+		display: inline;
+	}
+
+	h1 {
+		display: inline;
+		font-family: "Lobster", sans-serif;
+		line-height: @topBarH;
+		font-size: 25px;
+	}
 }
 
 
 #drawer {
-	white-space: normal;
-
-	height: 100%;
-	position: fixed;
-	left: 0;
-	top: @drawerNavH;
-
-
-	padding-bottom: 50px; //required to account for the top bar
-
-
-
-
-	* {
+	* { // don't want the user accidentally highlighting a navigation element while swiping
 		.user-select(none);
 	}
 
-	//following seems to screw up landscape - browser gets locked to fullscreen or not when drawer is triggered
-	//can only fix if go to port and trigger drawer on off again
-//	overflow-y: auto;
-//	body.open & {
-//		overflow: hidden;
-//	}
-
 	ul {
-		overflow-y: scroll;
 		height: 100%;
-
-
-		//since scrollbars don't auto disappear when they aren't needed in the first place
-		&::-webkit-scrollbar {
-			width: 0 !important;
-		}
-
-
 		margin: 0;
 		padding: 0;
 		list-style: none;
 
-
-
-
+		overflow-y: scroll;
+		&::-webkit-scrollbar {
+			width: 0 !important; //since scrollbars don't auto disappear when they aren't needed in the first place
+		}
 
 		li.item {
 			margin: 0;
 			padding: 0;
-
 			width: @drawerW;
-			//height: @drawerItemH;
 			background-color: @black + 20%;
 			border-bottom: 1px solid grey;
-
-			&.active {
-				a {
-					background-color: @red;
-				}
-			}
 
 			a {
 				display: block;
@@ -158,23 +140,16 @@ body {
 					margin-right: 10px;
 				}
 			}
+
+			&.active {
+				a {
+					background-color: @red;
+				}
+			}
 		}
 	}
 }
 
-#content {
-	white-space: normal;
-
-	width: 100%;
-	display: inline-block;
-
-	overflow: auto;
-
-	body.open & {
-		overflow: hidden;
-	}
-
-}
 
 
 
@@ -182,46 +157,16 @@ body {
 
 
 
-#drawerNav {
-	.column(12,none);
-	display: none;
-	color: white;
-	background-color: @greyDark;
-	body.open & {
-		background-color: @red;
-	}
-	border-bottom: 1px solid @black;
-
-	position: fixed;
-	top: 0;
-	left: 0;
-
-	height: @drawerNavH;
-
-	z-index: 100;
 
 
-	@media @mq-mobile {
-		display: block;
-	}
 
-	i {
-		color: white;
-		font-size: 25px;
-		line-height: @drawerNavH;
-		cursor: pointer;
-		padding: 5px 10px;
-		display: inline;
-	}
 
-	h1 {
-		display: inline;
-		font-family: "Lobster", sans-serif;
-		line-height: @drawerNavH;
-		font-size: 25px;
-	}
 
-}
+
+
+
+
+
 
 
 
