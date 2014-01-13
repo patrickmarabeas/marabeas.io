@@ -33,22 +33,3 @@ module.directive( 'scrollto', [ '$location', '$anchorScroll', function( $locatio
 		}
 	}
 }]);
-
-
-module.directive( 'content', [ function() {
-	return {
-		link: function( scope, element, attrs ) {
-
-
-		}
-	}
-}]);
-
-
-module.directive( 'drawer', [ function() {
-	return {
-		link: function( scope, element, attrs ) {
-
-		}
-	}
-}]);
