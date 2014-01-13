@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:ng="http://angularjs.org" id="ng-app" data-ng-app="pulsedev">
+<html xmlns:ng="http://angularjs.org" id="ng-app" data-ng-app="pulsedev"
+	  data-ng-controller="tester"
+	  data-ng-class="{open:drawer}">
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,88 +44,102 @@
 
 </head>
 
-<body data-ng-controller="tester"
-	  data-ng-swipe-right="drawerOpen()"
-	  data-ng-swipe-left="drawerClose()"
-	  data-ng-class="{open:drawer}"
+<body data-ng-class="{open:drawer}"
 	  data-scrollspy
 	  data-scrollspy-offset="200">
 
-	<div id="drawerNav" data-ng-click="drawerToggle()">
-		<i class="fa fa-bars"></i>
-		<h1>marabeas.io</h1>
-	</div>
+	<!--sounds like this is required for some browsers which are unable to hide overflow on html/body-->
+	<!--http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers-->
+	<div class="overflowWrapper">
 
-	<div id="drawer" data-drawer>
 
-		<ul>
-			<li class="item" data-scrollto data-spy="one"><a href="##one">stuff</a></li>
-			<li class="item" data-scrollto data-spy="two"><a href="##two">navigation element</a></li>
-			<li class="item" data-scrollto data-spy="three"><a href="##three">element</a></li>
-			<li class="item" data-scrollto data-spy="four"><a href="##four">something</a></li>
-			<li class="item">
-				<a href="http://stackoverflow.com/users/1455709/patrick" target="_blank"><i class="fa fa-stack-overflow"></i> Stack Overflow</a>
-			</li>
-			<li class="item">
-				<a href="http://github.com/patrickmarabeas" target="_blank"><i class="fa fa-github"></i> GitHub</a>
-			</li>
-			<li class="item">
-				<a href="http://dribbble.com/patrickmarabeas" target="_blank"><i class="fa fa-dribbble"></i> Dribbble</a>
-			</li>
-		</ul>
+		<div id="drawerNav" data-ng-click="drawerToggle()">
+			<i class="fa fa-bars"></i>
+			<h1>marabeas.io</h1>
+		</div>
 
-	</div>
+		<div id="drawer"
+			 data-drawer
+			 data-ng-swipe-left="drawerClose()">
 
-	<div id="content" data-content>
+			<ul>
+				<li class="item" data-scrollto data-spy="one"><a href="##one">stuff</a></li>
+				<li class="item" data-scrollto data-spy="two"><a href="##two">navigation element</a></li>
+				<li class="item" data-scrollto data-spy="three"><a href="##three">element</a></li>
+				<li class="item" data-scrollto data-spy="four"><a href="##four">something</a></li>
+				<li class="item">
+					<a href="http://stackoverflow.com/users/1455709/patrick" target="_blank"><i class="fa fa-stack-overflow"></i> Stack Overflow</a>
+				</li>
+				<li class="item">
+					<a href="http://github.com/patrickmarabeas" target="_blank"><i class="fa fa-github"></i> GitHub</a>
+				</li>
+				<li class="item">
+					<a href="http://dribbble.com/patrickmarabeas" target="_blank"><i class="fa fa-dribbble"></i> Dribbble</a>
+				</li>
+			</ul>
 
-		<div id="header">
+		</div>
 
-			<div class="page">
 
-				<div class="title"><h1 data-lettering="words" data-fittext="0.7">Patrick Marabeas Web Developer</h1></div>
+		<div class="contentWrapper">
 
-				<div class="about">
+			<div id="content"
+				 data-content
+				 data-ng-swipe-right="drawerOpen()"
+				 data-ng-swipe-left="drawerClose()"
+				 data-ng-click="drawerClose()">
 
-					<span class="location">Melbourne, Australia</span>
+				<div id="header">
 
-					<span class="contact">patrick@marabeas.io</span>
+					<div class="page">
 
-					<div class="availabilityContainer" data-fittext="0.93" data-lettering="words">Employment / Freelance</div>
+						<div class="title"><h1 data-lettering="words" data-fittext="0.7">Patrick Marabeas Web Developer</h1></div>
 
-					<span class="introduction" ng-include="'partials/introductionParagraph.html'"></span>
+						<div class="about">
+
+							<span class="location">Melbourne, Australia</span>
+
+							<span class="contact">patrick@marabeas.io</span>
+
+							<div class="availabilityContainer" data-fittext="0.93" data-lettering="words">Employment / Freelance</div>
+
+							<span class="introduction" ng-include="'partials/introductionParagraph.html'"></span>
+
+						</div>
+
+					</div>
 
 				</div>
 
+				<div id="banner">
+
+					<div class="page">
+
+						<h2 data-lettering="lines" data-fittext="0.7" data-fittext-min="50" data-fittext-max="60">
+							Crafting <br/>
+							Serious Websites <br/>
+							Of All Sizes
+						</h2>
+
+					</div>
+
+				</div>
+
+				<div id="one"></div>
+				<div id="two"></div>
+				<div id="three"></div>
+				<div id="four"></div>
+
+
+
+
 			</div>
+
 
 		</div>
 
-		<div id="banner">
-
-			<div class="page">
-
-				<h2 data-lettering="lines" data-fittext="0.7" data-fittext-min="50" data-fittext-max="60">
-					Crafting <br/>
-					Serious Websites <br/>
-					Of All Sizes
-				</h2>
-
-			</div>
-
-		</div>
-
-		<div id="one"></div>
-		<div id="two"></div>
-		<div id="three"></div>
-		<div id="four"></div>
 
 	</div>
-
-
-
-
-
-
 
 
 

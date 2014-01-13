@@ -49,25 +49,6 @@ module.directive( 'drawer', [ function() {
 	return {
 		link: function( scope, element, attrs ) {
 
-			scope.$watch( 'drawer', function() {
-
-				if( scope.drawer == true ) {
-
-					angular.element( window ).bind('touchmove', function( e ){
-						e.preventDefault();
-					});
-
-					angular.element( element ).bind("touchmove", function( e ) {
-						e.stopPropagation();
-					});
-
-				}
-				else {
-					angular.element( window ).unbind('touchmove');
-				}
-
-			});
-
 		}
 	}
 }]);

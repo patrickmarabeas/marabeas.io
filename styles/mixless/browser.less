@@ -67,3 +67,25 @@
 }
 /* property, duration, timing-function, delay */
 /* .transition(width, 0.2s, linear, 0s); */
+
+
+/****************************************************************
+* user-select
+****************************************************************/
+
+.user-select(@v) {
+
+	.webkitTap(@v) when (@v = none) {
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+
+	.webkitTap(@v);
+	-webkit-touch-callout: @v;
+	-webkit-user-select: @v;
+	-khtml-user-select: @v;
+	-moz-user-select: @v;
+	-ms-user-select: @v;
+	user-select: @v;
+}
+
+/* .user-select(value); */

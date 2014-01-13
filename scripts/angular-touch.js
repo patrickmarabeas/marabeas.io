@@ -155,7 +155,7 @@
 					}
 				});
 
-				element.on('touchend mouseup', function(event) {
+				angular.element( window ).on('touchend mouseup', function(event) {
 					if (!active) return;
 					active = false;
 					eventHandlers['end'] && eventHandlers['end'](getCoordinates(event), event);
