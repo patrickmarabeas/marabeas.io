@@ -3,6 +3,7 @@
 //but for the page to not scroll
 
 html {
+	height: 100%;
 	width: 100%;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -19,14 +20,9 @@ body {
 	background-color: @black + 20%;
 
 	&.open {
-		overflow: hidden;
+//		overflow: hidden; //doesn't seem necessary
 	}
-
-
-
-
 }
-
 
 //sounds like this is required for some browsers which are unable to hide overflow on html/body
 //http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers
@@ -72,8 +68,6 @@ body {
 			transform: translateX(@drawerW);
 
 			height: 100%;
-
-			//			.opacity(0.5);
 		}
 
 		body.open2 & {
@@ -109,11 +103,12 @@ body {
 		.user-select(none);
 	}
 
-
-	overflow-y: auto;
-	body.open & {
-		overflow: hidden;
-	}
+	//following seems to screw up landscape - browser gets locked to fullscreen or not when drawer is triggered
+	//can only fix if go to port and trigger drawer on off again
+//	overflow-y: auto;
+//	body.open & {
+//		overflow: hidden;
+//	}
 
 	ul {
 		overflow-y: scroll;
