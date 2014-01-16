@@ -36,7 +36,6 @@ html {
 			#content {
 				height: 100%; //massive performance increase for transition
 				width: 100%; //massive performance increase for transition
-
 				.transition(all,0.1s,linear,0s);
 				.transform( translate3d(0px,0px,0px) );
 
@@ -53,12 +52,12 @@ html {
 		&.open {
 
 			body {
-				overflow: hidden;
+				overflow: hidden; //setting this breaks FF/FF android (ie a change in overflow setting)
 
 				#overflowWrapper {
 					// seems like some browsers don't accept overflow:hidden on html/body
 					// http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers
-					overflow: hidden;
+					overflow: hidden; //setting this breaks FF/FF android (ie a change in overflow setting)
 
 					#content {
 						.transform( translateX(@drawerW) );
