@@ -9,6 +9,14 @@ html {
 
 	body {
 		overflow-x: hidden;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		@media @mq-mobile {
+			bottom: -100px;
+		}
 
 		#overflowWrapper {
 			overflow-x: hidden;
@@ -25,17 +33,21 @@ html {
 				}
 			}
 
-			#drawer {
+			#drawer, #content {
 				height: 100%;
 				position: fixed;
-				top: @topBarH;
+				top: 0;
 				left: 0;
-				padding-bottom: 32px; //required to account for the browser's bar
+				
+				@media @mq-mobile {
+					top: @topBarH;
+				    padding-bottom: 32px; //required to account for the browser's bar
+				}
 			}
 
 			#content {
-				height: 100%; //massive performance increase for transition
 				width: 100%; //massive performance increase for transition
+				overflow-y: auto;
 				.transition(all,0.1s,linear,0s);
 				.transform( translate3d(0px,0px,0px) );
 
@@ -52,8 +64,6 @@ html {
 		body {
 
 			&.open {
-				overflow: hidden; //setting this breaks FF/FF android (ie a change in overflow setting)
-
 				#overflowWrapper {
 					// seems like some browsers don't accept overflow:hidden on html/body
 					// http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers
@@ -61,6 +71,7 @@ html {
 
 					#content {
 						.transform( translateX(@drawerW) );
+						overflow: hidden;
 					}
 				}
 			}

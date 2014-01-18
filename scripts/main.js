@@ -17,6 +17,20 @@ module.controller( 'tester', [ '$scope', function( $scope ) {
 		return $scope.drawer = $scope.drawer !== true;
 	};
 
+    $scope.bindScroll = function() {
+        var lastScrollTop = 0;
+        document.getElementById('content').addEventListener('scroll', function(e) {
+            var currentScrollTop = document.getElementById('content').scrollTop;
+            if(currentScrollTop < lastScrollTop) {
+                // Upwards scroll!
+                document.body.scrollTop -= 10;
+            } else {
+                // Downwards scroll!
+                document.body.scrollTop += 10;
+            }
+            lastScrollTop = currentScrollTop;
+        });
+    };
 }]);
 
 
