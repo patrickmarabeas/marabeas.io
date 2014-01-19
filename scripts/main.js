@@ -33,3 +33,62 @@ module.directive( 'scrollto', [ '$location', '$anchorScroll', function( $locatio
 		}
 	}
 }]);
+
+
+module.directive( 'navswap', [ 'AdoptionAgency', function( AdoptionAgency ) {
+	return {
+		require: 'adopt',
+		link: function( scope, element, attrs ) {
+
+			var elementHeight, oldElm, newElm;
+
+			angular.element( document ).ready( function() {
+				elementHeight = document.getElementById(attrs.id).offsetTop;
+				oldElm = document.getElementById(attrs.id);
+
+				newElm = document.getElementById(attrs.id + '_clone');
+			});
+
+
+
+
+			angular.element( window ).bind( 'scroll', function() {
+
+
+				var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+
+				if( scrollTop > elementHeight ) {
+
+					scope.$apply( function () {
+						scope.adopt = true;
+					});
+
+				}
+
+				else {
+					scope.$apply( function () {
+						scope.adopt = false;
+					});
+				}
+
+
+			});
+
+			angular.element( window ).bind( 'resize', function() {
+
+
+				if( scope.adopt ) {
+					var newElm = document.getElementById(attrs.id + '_clone');
+
+					newElm.style.width = oldElm.offsetWidth + 'px';
+					newElm.style.left = oldElm.offsetLeft + 'px';
+
+				}
+
+
+			});
+
+
+		}
+	}
+}]);

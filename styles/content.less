@@ -156,6 +156,17 @@ html {
 	}
 }
 
+#content {
+	.full_width();
+	background-color: @white;
+
+	#stuff {
+		.column(12);
+		min-height: 1000px;
+	}
+
+}
+
 
 
 
@@ -303,6 +314,28 @@ html {
 	}
 }
 
+
+nav, nav#whatever_clone {
+	.full_width;
+	background-color: @black;
+
+	@media @mq-mobile {
+		display: none;
+	}
+
+	ul {
+		.column(12);
+
+		li {
+			float: left;
+		}
+	}
+}
+
+#whatever_clone {
+	position: fixed;
+	top: 0;
+}
 
 
 #banner {
