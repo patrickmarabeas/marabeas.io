@@ -14,42 +14,53 @@ html {
 			overflow-x: hidden;
 
 			#topBar {
-				height: @topBarH;
 				display: none;
-				position: fixed;
-				top: 0;
-				left: 0;
-				z-index: 100;
-				@media @mq-mobile {
-					display: block;
-				}
 			}
 
 			#drawer {
-				height: 100%;
-				position: fixed;
-				top: @topBarH;
-				left: 0;
-				padding-bottom: 32px; //required to account for the browser's bar
+				display: none;
 			}
-
-			#content {
-				height: 100%; //massive performance increase for transition
-				width: 100%; //massive performance increase for transition
-				.transition(all,0.1s,linear,0s);
-				.transform( translate3d(0px,0px,0px) );
-
-				* { // improve transition performance
-					.transform( translateZ(0) );
-				}
-			}
-
 		}
 	}
 
 	@media @mq-mobile {
 
 		body {
+
+			#overflowWrapper {
+
+				#topBar {
+					height: @topBarH;
+					display: block;
+					position: fixed;
+					top: 0;
+					left: 0;
+					z-index: 100;
+					@media @mq-mobile {
+						display: block;
+					}
+				}
+
+				#drawer {
+					display: block;
+					height: 100%;
+					position: fixed;
+					top: @topBarH;
+					left: 0;
+					padding-bottom: 32px; //required to account for the browser's bar
+				}
+
+				#page {
+					height: 100%; //massive performance increase for transition
+					width: 100%; //massive performance increase for transition
+					.transition(all,0.1s,linear,0s);
+					.transform( translate3d(0px,0px,0px) );
+
+					* { // improve transition performance
+						.transform( translateZ(0) );
+					}
+				}
+			}
 
 			&.open {
 				overflow: hidden; //setting this breaks FF/FF android (ie a change in overflow setting)
@@ -59,7 +70,7 @@ html {
 					// http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers
 					overflow: hidden; //setting this breaks FF/FF android (ie a change in overflow setting)
 
-					#content {
+					#page {
 						.transform( translateX(@drawerW) );
 					}
 				}
@@ -144,9 +155,6 @@ html {
 		}
 	}
 }
-
-
-
 
 
 
@@ -285,7 +293,6 @@ html {
 
 			@media @mq-mobile {
 				display: none;
-				font-size: 1.5em;
 			}
 		}
 
