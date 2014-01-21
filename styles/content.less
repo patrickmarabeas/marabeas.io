@@ -9,7 +9,7 @@ html {
 
 	body {
 		overflow-x: hidden;
-
+		
 		#overflowWrapper {
 			overflow-x: hidden;
 
@@ -71,7 +71,7 @@ html {
 					overflow: hidden; //setting this breaks FF/FF android (ie a change in overflow setting)
 
 					#page {
-						.transform( translateX(@drawerW) );
+						.transform( translate3d(@drawerW,0px,0px) );
 					}
 				}
 			}
@@ -131,6 +131,14 @@ html {
 			width: @drawerW;
 			background-color: @black + 20%;
 			border-bottom: 1px solid grey;
+
+			span {
+				display: block;
+				color: white;
+				padding: 10px;
+				font-size: 18px;
+			}
+
 
 			a {
 				display: block;
