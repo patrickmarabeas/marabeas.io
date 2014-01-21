@@ -26,7 +26,7 @@
 	<!-- Project Files -->
 	<script type="text/javascript" src="scripts/ng-FitText.js"></script>
 	<script type="text/javascript" src="scripts/ng-Lettering.js"></script>
-	<script type="text/javascript" src="scripts/ng-DiscreteUI.js"></script>
+	<script type="text/javascript" src="scripts/ng-Adoption.js"></script>
 	<script type="text/javascript" src="scripts/ng-ScrollSpy.js"></script>
 
 	<script type="text/javascript" src="scripts/main.js"></script>
@@ -42,7 +42,8 @@
 
 </head>
 
-<body data-ng-controller="tester"
+<body id="body"
+	  data-ng-controller="tester"
 	  data-ng-class="{open:drawer}"
 	  data-scrollspy
 	  data-scrollspy-offset="200">
@@ -59,10 +60,12 @@
 			 data-ng-swipe-left="drawerClose()">
 
 			<ul>
-				<li class="item" data-scrollto data-spy="one"><a href="##one">stuff</a></li>
-				<li class="item" data-scrollto data-spy="two"><a href="##two">navigation element</a></li>
-				<li class="item" data-scrollto data-spy="three"><a href="##three">element</a></li>
-				<li class="item" data-scrollto data-spy="four"><a href="##four">something</a></li>
+				<li class="item">
+					<span>Melbourne, Australia</span>
+				</li>
+				<li class="item">
+					<span>patrick@marabeas.io</span>
+				</li>
 				<li class="item">
 					<a href="http://stackoverflow.com/users/1455709/patrick" target="_blank"><i class="fa fa-stack-overflow"></i> Stack Overflow</a>
 				</li>
