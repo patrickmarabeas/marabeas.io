@@ -29,6 +29,7 @@
 	<script type="text/javascript" src="scripts/ng-Adoption.js"></script>
 	<script type="text/javascript" src="scripts/ng-ScrollSpy.js"></script>
 
+	<script type="text/javascript" src="scripts/github.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
 
 	<!-- LESS.js -->
@@ -148,9 +149,18 @@
 
 				<div class="page">
 
-					<div id="stuff">
+					<div id="github" ng-controller="RepoController">
 
-
+						<div data-ng-repeat="repo in repos" class="repo-tile">
+							<h2>{{repo.data.name}}</h2>
+							<ul>
+								<li>{{repo.data.description}}</li>
+								<li>{{repo.data.forks}}</li>
+								<li>{{repo.data.stargazers_count}}&#9733;</li>
+								<li>{{repo.data.homepage}}</li>
+								<li>{{repo.img}}</li>
+							</ul>
+						</div>
 
 					</div>
 
