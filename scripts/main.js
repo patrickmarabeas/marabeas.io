@@ -17,60 +17,6 @@ module.controller( 'tester', [ '$scope', function( $scope ) {
 		return $scope.drawer = $scope.drawer !== true;
 	};
 
-
-
-//	// should be moved to a directive
-//	angular.element( document ).ready( function() {
-//		$scope.innerWindowHeightInitial = window.innerHeight;
-//		$scope.addressBar = true;
-//	});
-//
-//
-//	angular.element( window ).bind( 'scroll', function() {
-//
-//		$scope.innerWindowHeight = window.innerHeight;
-//
-////		alert($scope.innerWindowHeightInitial +" "+ $scope.innerWindowHeight);
-//
-//		if( $scope.innerWindowHeight > $scope.innerWindowHeightInitial ) {
-//			// retracted
-//			scope.$apply( function () {
-//				$scope.addressBar = false;
-//			});
-//		}
-//		else {
-//			//visible
-//			scope.$apply( function () {
-//				$scope.addressBar = true;
-//			});
-//		}
-//
-//	});
-//
-//
-//
-//	$scope.$watch('drawer', function( drawer ){
-//		if( drawer ){
-//
-//			if( $scope.addressBar ) {
-//				angular.element( document.getElementById( 'body' ) ).css( 'height', ( window.innerHeight - 50 ) + "px" );
-//			}
-//			else {
-////				alert(window.innerHeight);
-//				angular.element( document.getElementById( 'body' ) ).css( 'height', ( window.innerHeight - 100 ) + "px" );
-//			}
-//
-//		}
-//		else{
-//			angular.element( document.getElementById( 'body' ) ).css( 'height', 'auto');
-//		}
-//	});
-//
-//	// ! should be moved to a directive
-
-
-
-
 }]);
 
 
