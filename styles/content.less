@@ -9,7 +9,7 @@ html {
 
 	body {
 		overflow-x: hidden;
-		
+
 		#overflowWrapper {
 			overflow-x: hidden;
 
@@ -176,7 +176,17 @@ html {
 }
 
 
-
+//#find {
+//	.full_width();
+//	background-color: @black;
+//
+//	.item {
+//		.column(3);
+//		height: 100px;
+//		background-color: pink;
+//	}
+//
+//}
 
 
 
@@ -290,14 +300,14 @@ html {
 
 			/* span:nth-child(2){ */
 			span:first-child + span {
-				color: @greyDark;
+				color: @greyLight;
 				font-family: "verdana";
 			}
 
 			/* span:nth-child(3){ */
 			span:first-child + span + span {
-				color: @blue;
-				text-decoration: line-through;
+				color: @greyDark;
+//				text-decoration: line-through;
 			}
 
 			@media @mq-mobile {
@@ -314,6 +324,7 @@ html {
 				display: none;
 			}
 		}
+
 
 		@media @mq-mobile {
 			.column(12);
@@ -333,9 +344,45 @@ nav, nav#whatever_clone {
 
 	ul {
 		.column(12);
+		padding: 0px;
+		margin: 0px;
+		border-bottom: 1px solid @greyDark;
 
 		li {
 			float: left;
+			list-style-type: none;
+			text-align: left;
+			border: 0px;
+			font-weight: bold;
+
+			a {
+				color: @white;
+				text-decoration: none;
+				padding: 0 15px;
+
+
+				display: block;
+
+				line-height: @navigationHeight;
+
+
+				i {
+					font-size: 20px;
+					line-height: @navigationHeight;
+				}
+			}
+
+			&:hover {
+				a {
+					color: @red;
+				}
+			}
+
+			&.active {
+				a {
+					color: @red;
+				}
+			}
 		}
 	}
 }
@@ -343,6 +390,26 @@ nav, nav#whatever_clone {
 #whatever_clone {
 	position: fixed;
 	top: 0;
+}
+
+#latestPost {
+	.full_width;
+	background-color: @black;
+	padding: 30px 0;
+
+	@media @mq-mobile {
+		display: none;
+	}
+
+	.page {
+
+		p {
+			.column(12);
+			color: @greyLight;
+			font-size: 1.4em;
+		}
+
+	}
 }
 
 

@@ -42,7 +42,7 @@
 
 </head>
 
-<body id="body"
+<body id="top"
 	  data-ng-controller="tester"
 	  data-ng-class="{open:drawer}"
 	  data-scrollspy
@@ -110,36 +110,39 @@
 			<nav id="whatever" data-adopt data-adopt-maintain="height" data-navfix>
 				<div class="page">
 					<ul>
+						<li class="item" data-scrollto data-spy="top"><a href="#top">top</a></li>
 						<li class="item" data-scrollto data-spy="one"><a href="##one">stuff</a></li>
 						<li class="item" data-scrollto data-spy="two"><a href="##two">navigation element</a></li>
 						<li class="item" data-scrollto data-spy="three"><a href="##three">element</a></li>
 						<li class="item" data-scrollto data-spy="four"><a href="##four">something</a></li>
-						<li class="item">
-							<a href="http://stackoverflow.com/users/1455709/patrick" target="_blank"><i class="fa fa-stack-overflow"></i> Stack Overflow</a>
-						</li>
-						<li class="item">
-							<a href="http://github.com/patrickmarabeas" target="_blank"><i class="fa fa-github"></i> GitHub</a>
-						</li>
-						<li class="item">
-							<a href="http://dribbble.com/patrickmarabeas" target="_blank"><i class="fa fa-dribbble"></i> Dribbble</a>
-						</li>
 					</ul>
 				</div>
 			</nav>
+
+
+			<div id="latestPost">
+				<div class="page">
+					<p>Get the latest post I've made</p>
+				</div>
+			</div>
+
+
 
 			<div id="banner">
 
 				<div class="page">
 
-					<h2 data-lettering="lines" data-fittext="0.7" data-fittext-min="50" data-fittext-max="60">
-						Crafting <br/>
-						Serious Websites <br/>
-						Of All Sizes
-					</h2>
+					<!--<h2 data-lettering="lines" data-fittext="0.7" data-fittext-min="50" data-fittext-max="60">-->
+						<!--Crafting <br/>-->
+						<!--Serious Websites <br/>-->
+						<!--Of All Sizes-->
+					<!--</h2>-->
 
 				</div>
 
 			</div>
+
+
 
 			<div id="content">
 
