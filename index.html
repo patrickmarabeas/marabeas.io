@@ -29,7 +29,7 @@
 	<script type="text/javascript" src="scripts/ng-Adoption.js"></script>
 	<script type="text/javascript" src="scripts/ng-ScrollSpy.js"></script>
 
-	<script type="text/javascript" src="scripts/github.js"></script>
+	<script type="text/javascript" src="scripts/gitHubRepositories.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
 
 	<!-- LESS.js -->
@@ -144,25 +144,76 @@
 			</div>
 
 
-
 			<div id="content">
 
 				<div class="page">
 
-					<div id="github" ng-controller="RepoController">
 
-						<div data-ng-repeat="repo in repos" class="repo-tile">
-							<h2>{{repo.data.name}}</h2>
-							<ul>
-								<li>{{repo.data.description}}</li>
-								<li>{{repo.data.forks}}</li>
-								<li>{{repo.data.stargazers_count}}&#9733;</li>
-								<li>{{repo.data.homepage}}</li>
-								<li>{{repo.img}}</li>
-							</ul>
-						</div>
+					<div id="forkit">
+
+						<ul>
+							<li>Fork it</li>
+							<li>Share it</li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
 
 					</div>
+
+
+					<div id="github" ng-controller="GitController">
+
+						<span data-ng-click="lastModified = 'last_modified'; reverse=!reverse">SORT DATE</span>
+
+						<ul>
+							<li data-ng-repeat="git in gits | orderBy:lastModified:reverse"
+								data-ng-switch
+								data-on="git.source">
+
+								<div ng-switch-when="github"
+									  class="">
+
+									<a href="{{ git.data.html_url }}">{{ git.name }}</a>
+									<span>{{ git.data.description }}</span>
+
+									<a data-ng-show="git.data.homepage" href="{{ git.data.homepage }}">demo</a>
+
+									<ul>
+										<li data-ng-repeat="commit in git.commits | limitTo:'3'">{{ commit.commit.message }}</li>
+									</ul>
+
+									<br/>
+
+									<ul>
+										<li data-ng-repeat="issue in git.issues | limitTo:'3'"
+											class="{{ issue.state }}">{{ issue.title }}
+
+											<ul>
+												<li data-ng-repeat="label in issue.labels">{{ label.name }}</li>
+											</ul>
+
+										</li>
+
+
+									</ul>
+
+									<!--{{ git.lastdified }}-->
+									<!--{{ git.commits }}-->
+
+								</div>
+
+
+
+							</li>
+
+						</ul>
+
+					</div>
+
+
+
+
 
 
 				</div>

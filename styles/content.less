@@ -9,6 +9,7 @@ html {
 
 	body {
 		overflow-x: hidden;
+		position: relative; //overflow property works only for elements with a non-static position
 
 		#overflowWrapper {
 			overflow-x: hidden;
@@ -168,9 +169,21 @@ html {
 	.full_width();
 	background-color: @white;
 
+	#feed {
+		.column(4);
+
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	#forkit {
+		.column(4);
+	}
+
 	#github {
-		.column(12);
-		min-height: 1000px;
+		.column(8);
 	}
 
 }
@@ -306,7 +319,7 @@ html {
 
 			/* span:nth-child(3){ */
 			span:first-child + span + span {
-				color: @greyDark;
+				color: @blue;
 //				text-decoration: line-through;
 			}
 
