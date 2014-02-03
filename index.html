@@ -30,6 +30,7 @@
 	<script type="text/javascript" src="scripts/ng-ScrollSpy.js"></script>
 
 	<script type="text/javascript" src="scripts/gitHubRepositories.js"></script>
+	<script type="text/javascript" src="scripts/dribbbleImages.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
 
 	<!-- LESS.js -->
@@ -152,6 +153,13 @@
 					<div id="forkit">
 
 
+
+
+						<ul data-ng-controller="DribbbleController">
+							<li class="dribbbles" data-ng-repeat="image in dribbbles">
+								<a href="{{ image.url }}"><img src="{{ image.image }}" /></a>
+							</li>
+						</ul>
 
 					</div>
 
