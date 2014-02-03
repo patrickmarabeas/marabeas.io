@@ -11,7 +11,7 @@ module.factory('GitFactory', ['$http', function( $http ){
 		},{
 			'name': 'ng-Lettering.js',
 			'source': 'github',
-			'image': '',
+			'image': 'images/ng-letteringjs.jpg',
 			'tags': '',
 			'category': ''
 		},{
@@ -45,12 +45,6 @@ module.factory('GitFactory', ['$http', function( $http ){
 			'tags': '',
 			'category': ''
 		},{
-			'name': 'drewdev.com',
-			'source': 'github',
-			'image': '',
-			'tags': '',
-			'category': ''
-		},{
 			'name': 'useLESS-Mixins',
 			'source': 'github',
 			'image': '',
@@ -75,18 +69,6 @@ module.factory('GitFactory', ['$http', function( $http ){
 			'tags': '',
 			'category': ''
 		},{
-			'name': 'jQuery-ShortNum',
-			'source': 'github',
-			'image': '',
-			'tags': '',
-			'category': ''
-		},{
-			'name': 'Core-Project-Template',
-			'source': 'github',
-			'image': '',
-			'tags': '',
-			'category': ''
-		},{
 			'name': 'angular-touch.js',
 			'source': 'github',
 			'image': '',
@@ -104,12 +86,10 @@ module.factory('GitFactory', ['$http', function( $http ){
 			angular.forEach( GitFactory.repositories, function( request ){
 				var repoData = $http.get( phpAPIUrl, {
 					params: {
-//						"callback": "JSON_CALLBACK",
 						"url": 'https://api.github.com/repos/patrickmarabeas/'+ request.name
-//						"client_id": "", //shouldn't be public
-//						"client_secret": "" //shouldn't be public
 					}
 				}).then( function( result ) {
+// JUST SAVE THE DATA NEEDED SO SEARCH ACTUALLY FUNCTIONS AS EXPECTED (ON DATA YOU CAN ACTUALLY SEE NOT THE ENTIRE API RETURN)
 					request.data = result.data;
 					request.last_modified = Date.parse( result.data.updated_at );
 
@@ -119,7 +99,7 @@ module.factory('GitFactory', ['$http', function( $http ){
 							"url": 'https://api.github.com/repos/patrickmarabeas/'+ request.name + '/commits'
 						}
 					}).then( function( result ) {
-
+// JUST SAVE THE DATA NEEDED SO SEARCH ACTUALLY FUNCTIONS AS EXPECTED (ON DATA YOU CAN ACTUALLY SEE NOT THE ENTIRE API RETURN)
 						request.commits = result.data;
 					});
 
@@ -129,7 +109,7 @@ module.factory('GitFactory', ['$http', function( $http ){
 							"url": 'https://api.github.com/repos/patrickmarabeas/'+ request.name + '/issues'
 						}
 					}).then( function( result ) {
-
+// JUST SAVE THE DATA NEEDED SO SEARCH ACTUALLY FUNCTIONS AS EXPECTED (ON DATA YOU CAN ACTUALLY SEE NOT THE ENTIRE API RETURN)
 						request.issues = result.data;
 
 					});
@@ -148,12 +128,28 @@ module.controller('GitController', [ '$scope', 'GitFactory', function( $scope, G
 
 	GitFactory.getRepositories();
 
-	$scope.lastModified = 'last_modified';
+	$scope.sort = 'last_modified';
 	$scope.reverse = true;
 
 	$scope.gits = GitFactory.repositories;
 
 	$scope.commits = GitFactory.repositories.commits;
 
+	$scope.tab = 'commits';
+
+	$scope.setColor = function( state ) {
+
+		var color;
+		if(state == 'open') {
+			color = '#6CC644';
+		}
+		if(state == 'closed') {
+			color = '#BD2C00';
+		}
+		if(state == 'commit') {
+			color = '';
+		}
+		return color;
+	};
 
 }]);

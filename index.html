@@ -123,7 +123,7 @@
 
 			<div id="latestPost">
 				<div class="page">
-					<p>Get the latest post I've made</p>
+					<p>Why is AngularJS this good?! The things you can do with it are just ridiculously stupid. "This can't possibly work - huh." Then I start giggling maniacally.</p>
 				</div>
 			</div>
 
@@ -151,51 +151,82 @@
 
 					<div id="forkit">
 
-						<ul>
-							<li>Fork it</li>
-							<li>Share it</li>
-							<li></li>
-							<li></li>
-							<li></li>
-						</ul>
+
 
 					</div>
 
 
 					<div id="github" ng-controller="GitController">
 
-						<span data-ng-click="lastModified = 'last_modified'; reverse=!reverse">SORT DATE</span>
+						<!--<span data-ng-click="sort = 'last_modified'; reverse=!reverse">SORT DATE</span>-->
+						<!--<span data-ng-click="sort = 'data.watchers'; reverse=true">MOST POPULAR</span>-->
+						<!--<br/>-->
+
+						<!--Search: <input type="text" data-ng-model="searchProjects" />-->
+
+
 
 						<ul>
-							<li data-ng-repeat="git in gits | orderBy:lastModified:reverse"
+							<li data-ng-repeat="git in gits | orderBy:sort:reverse | filter:searchProjects"
 								data-ng-switch
 								data-on="git.source">
 
-								<div ng-switch-when="github"
-									  class="">
+								<div class="project"
+									 ng-switch-when="github">
 
-									<a href="{{ git.data.html_url }}">{{ git.name }}</a>
-									<span>{{ git.data.description }}</span>
 
-									<a data-ng-show="git.data.homepage" href="{{ git.data.homepage }}">demo</a>
+									<h1>
+										<a href="{{ git.data.html_url }}">{{ git.name }}</a>
+										<!--<i class="fa fa-link"></i>-->
+										<!--<i class="fa fa-code-fork"></i>-->
+									</h1>
 
-									<ul>
-										<li data-ng-repeat="commit in git.commits | limitTo:'3'">{{ commit.commit.message }}</li>
+									<h2>{{ git.data.description }}</h2>
+
+									<div class="tabs">
+										<span class="tab" ng-class="{ active:tab=='detail' }" data-ng-click="tab='detail'">detail</span>
+										<span class="tab" ng-class="{ active:tab=='commits' }" data-ng-click="tab='commits'">commits</span>
+										<span class="tab" ng-class="{ active:tab=='issues' }" data-ng-click="tab='issues'">issues({{ git.issues.length }})</span>
+									</div>
+
+									<a class="demo" href="{{ git.data.homepage }}" data-ng-show="git.data.homepage">
+										<img src="{{ git.image }}" />
+										<span>demo</span>
+									</a>
+
+									<ul  data-ng-show="tab == 'detail'">
+										<li>this is some detail</li>
 									</ul>
 
-									<br/>
 
-									<ul>
-										<li data-ng-repeat="issue in git.issues | limitTo:'3'"
-											class="{{ issue.state }}">{{ issue.title }}
+
+									<ul data-ng-show="tab == 'commits'">
+										<li class="commits"
+											ng-style="{ backgroundColor : setColor( 'commit' ) }"
+											data-ng-repeat="commit in git.commits | limitTo:'5'">
+											<a href="{{ commit.html_url }}"><i class="fa fa-code"></i> {{ commit.commit.message }}</a></li>
+									</ul>
+
+
+									<ul data-ng-show="tab == 'issues'">
+										<li class="issues"
+											data-ng-repeat="issue in git.issues">
 
 											<ul>
-												<li data-ng-repeat="label in issue.labels">{{ label.name }}</li>
+
+												<li class="label" ng-style="{ backgroundColor : setColor( issue.state ) }">{{ issue.state }}</li><!--
+
+												--><li class="label"
+													data-ng-repeat="label in issue.labels"
+													ng-style="{ backgroundColor : '#' + label.color }">{{ label.name }}</li><!--
+
+												--><li class="issueTitle"><a href="{{ issue.html_url }}">{{ issue.title }}</a></li>
+
 											</ul>
 
+
+
 										</li>
-
-
 									</ul>
 
 									<!--{{ git.lastdified }}-->
@@ -234,6 +265,8 @@
 	</div>
 
 
+	<div id="map"></div>
+
 
 
 	<script type="text/javascript">
@@ -247,7 +280,7 @@
 		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	})();
-		
+
 	</script>
 
 </body>

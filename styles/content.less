@@ -180,10 +180,129 @@ html {
 
 	#forkit {
 		.column(4);
+
+
 	}
 
 	#github {
 		.column(8);
+
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			li {
+				margin: 0;
+				padding: 0;
+
+				.project {
+					margin-bottom: 50px;
+
+					h1 {
+						a {
+
+							color: @greyLight;
+							text-decoration: none;
+						}
+
+					}
+
+					h2 {
+						color: @greyLight + 20%;
+					}
+
+					.tabs {
+						border-bottom: 1px solid red;
+
+						.tab {
+							border: 1px solid red;
+
+							&.active {
+								border-bottom: 1px solid white;
+							}
+						}
+					}
+
+
+					.commits {
+						margin-bottom: 2px;
+					}
+
+
+					.issues {
+						margin-bottom: 2px;
+
+						.label {
+							display: inline-block;
+							padding: 0 6px;
+							line-height: 24px;
+							.border-radius(3px);
+							margin-right: 4px;
+							color: white;
+							font-size: 10px;
+						}
+
+						.issueTitle {
+							display: inline-block;
+							line-height: 24px;
+						}
+					}
+				}
+			}
+		}
+
+
+
+
+
+//		h1 {
+//			margin-left: -30px;
+//			background-color: grey;
+//			padding: 5px 15px 5px 30px;
+//			display: inline-block;
+//			position: relative;
+//
+//			&:after {
+//				content: '';
+//				position: absolute;
+//				left: 0;
+//				top: 100%;
+//				.triangle(top-right, lightgrey, 30px, 30px)
+//			}
+//		}
+
+
+		.demo {
+			display: block;
+			min-height: 75px;
+			width: 100%;
+			background-color: pink;
+			text-decoration: none;
+			position: relative;
+
+			span {
+				font-size: 50px;
+				line-height: 75px;
+				.opacity(0.5);
+				color: white;
+			}
+
+			img {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
+
+
+
+
+
+
+
+
 	}
 
 }
