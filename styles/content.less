@@ -218,40 +218,130 @@ html {
 				padding: 0;
 
 				.project {
-					margin-bottom: 50px;
+					.column(12);
+					padding-bottom: 20px;
+
 
 					h1 {
+						font-size: 36px;
+
 						a {
 
 							color: @greyLight;
-							text-decoration: none;
-						}
+//							text-decoration: none;
 
-					}
+							i {
+								font-size: .5em;
+								color: @green;
+							}
 
-					h2 {
-						color: @greyLight + 20%;
-					}
-
-					.tabs {
-						border-bottom: 1px solid red;
-
-						.tab {
-							border: 1px solid red;
-
-							&.active {
-								border-bottom: 1px solid white;
+							&:hover {
+								color: @green;
+								text-decoration: underline;
 							}
 						}
 					}
 
+					h2 {
+						font-size: 18px;
+						color: @greyLight + 20%;
+
+//						.website { color: ; }
+						.production { color: @green; }
+//						.development { color: ; }
+//						.experiment { color: ; }
+					}
+
+					p {
+						color: @greyDark;
+					}
+
+
+					img {
+						max-width: 100%;
+						height: auto;
+					}
+
+
+					ul.tabs {
+						.column(12,none);
+						margin: 10px 0;
+
+						li.tab {
+							.column(2,right);
+							text-align: right;
+							color: white;
+							background-color: @greyVeryLight;
+							.user-select(none);
+							height: 65px;
+
+							span.number {
+								display: block;
+								font-size: 48px;
+								font-weight: bold;
+								line-height: 1em;
+							}
+							span.title {
+								display: block;
+								font-size: 12px;
+								padding-right: 2px;
+							}
+
+							a {
+								display: block;
+								text-decoration: none;
+								height: 100%;
+								color: @green;
+								font-size: 14px;
+								line-height: 65px;
+								text-align: center;
+
+								&:hover {
+									color: @white;
+								}
+							}
+
+							&:not(.hasContent){
+								cursor: default;
+
+								&:hover {
+									color: @green;
+								}
+							}
+
+							&.hasContent {
+								cursor: pointer;
+
+								&:hover {
+									background-color: @green;
+								}
+
+								&.active {
+									background-color: @green;
+								}
+							}
+
+
+						}
+
+					}
+
 
 					.commits {
+						.column(11);
+						.push(1);
 						margin-bottom: 2px;
+						line-height: 24px;
+
+						a {
+							color: @greyDark;
+						}
 					}
 
 
 					.issues {
+						.column(11);
+						.push(1);
 						margin-bottom: 2px;
 
 						.label {
@@ -262,6 +352,7 @@ html {
 							margin-right: 4px;
 							color: white;
 							font-size: 10px;
+							cursor: default;
 						}
 
 						.issueTitle {
