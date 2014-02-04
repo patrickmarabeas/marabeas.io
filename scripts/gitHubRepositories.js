@@ -174,3 +174,12 @@ module.controller('GitController', [ '$scope', 'GitFactory', function( $scope, G
 }]);
 
 
+module.directive( 'commitsAutoOpen', [ function() {
+	return {
+		link: function(scope, element, attrs) {
+			attrs.$observe('commitsAutoOpen', function(val){
+				scope.commits = (val == 0 ) ? true : false;
+			});
+		}
+	}
+}]);

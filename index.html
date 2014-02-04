@@ -179,44 +179,74 @@
 								data-ng-switch
 								data-on="git.source">
 
-								<div class="project"
+								<div class="project {{ git.category }}"
 									 ng-switch-when="github">
 
-
 									<h1>
-										<a href="{{ git.data.html_url }}">{{ git.name }}</a>
-										<!--<i class="fa fa-link"></i>-->
-										<!--<i class="fa fa-code-fork"></i>-->
+										<a href="{{ git.data.html_url }}">
+											{{ git.name }}
+											<i class="fa fa-link"></i>
+										</a>
+
 									</h1>
 
-									<h2>{{ git.data.description }}</h2>
+									<h2>
+										<span class="{{ git.category }}">{{ git.category }}: </span>
+										{{ git.data.description }}
+									</h2>
 
-									<div class="tabs">
-										<span class="tab" ng-class="{ active:tab=='detail' }" data-ng-click="tab='detail'">detail</span>
-										<span class="tab" ng-class="{ active:tab=='commits' }" data-ng-click="tab='commits'">commits</span>
-										<span class="tab" ng-class="{ active:tab=='issues' }" data-ng-click="tab='issues'">issues({{ git.issues.length }})</span>
-									</div>
+									<p>{{ git.description }}</p>
 
-									<a class="demo" href="{{ git.data.homepage }}" data-ng-show="git.data.homepage">
-										<img src="{{ git.image }}" />
-										<span>demo</span>
-									</a>
+									<img src="{{ git.image }}" />
 
-									<ul  data-ng-show="tab == 'detail'">
+									<ul class="tabs">
+
+										<li class="tab">
+											<span class="number">{{ git.data.stargazers_count }}</span>
+											<span class="title">stars</span>
+										</li>
+
+										<!-- FOR SOME REASON $INDEX IS BEING TREATED AS INDEX BEFORE ORDERBY - PERHAPS NG-INIT HAPPENS TOO EARLY? -->
+										<!--<li class="tab hasContent" ng-class="{ active:commits }" data-ng-click="commits=!commits" data-ng-init="commits=!$index">-->
+										<li class="tab hasContent" ng-class="{ active:commits }" data-ng-click="commits=!commits" data-commits-auto-open="{{ $index }}">
+											<span class="number">{{ git.commits.length }}</span>
+											<span class="title">commits</span>
+
+										</li>
+
+										<li class="tab hasContent" ng-class="{ active:issues }" data-ng-click="issues=!issues">
+											<span class="number">{{ git.issues.length }}</span>
+											<span class="title">issues</span>
+										</li>
+
+										<li class="tab">
+											<span class="number">{{ git.data.forks_count }}</span>
+											<span class="title">forks</span>
+										</li>
+
+										<li class="tab hasContent" data-ng-show="git.data.homepage">
+											<a href="{{ git.data.homepage }}">demo</a>
+										</li>
+
+									</ul>
+
+
+
+									<ul  data-ng-show="detail">
 										<li>this is some detail</li>
 									</ul>
 
 
 
-									<ul data-ng-show="tab == 'commits'">
+									<ul data-ng-show="commits">
 										<li class="commits"
 											ng-style="{ backgroundColor : setColor( 'commit' ) }"
-											data-ng-repeat="commit in git.commits | limitTo:'5'">
+											data-ng-repeat="commit in git.commits | limitTo:'10'">
 											<a href="{{ commit.html_url }}"><i class="fa fa-code"></i> {{ commit.commit.message }}</a></li>
 									</ul>
 
 
-									<ul data-ng-show="tab == 'issues'">
+									<ul data-ng-show="issues">
 										<li class="issues"
 											data-ng-repeat="issue in git.issues">
 
