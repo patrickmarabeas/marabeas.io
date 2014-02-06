@@ -180,10 +180,20 @@ html {
 
 	#forkit {
 		.column(4);
+		@media @mq-mobile {
+			display: none;
+		}
 
 		ul {
 			margin: 0;
 			padding: 0;
+
+			li.title {
+				margin: 0;
+				padding: 0;
+				.column(12,none);
+				font-weight: bold;
+			}
 
 			li.dribbbles {
 				margin: 0;
@@ -200,12 +210,42 @@ html {
 				}
 
 			}
+
+			li.websites {
+				margin: 0;
+				padding: 0;
+				.column(12,none);
+				margin-bottom: 10px;
+
+				a {
+					text-decoration: none;
+
+					img {
+						max-width: 100%;
+						height: auto;
+					}
+				}
+			}
 		}
 
 	}
 
 	#github {
 		.column(8);
+		@media @mq-mobile {
+			.column(12);
+		}
+
+		.gitNav {
+			.column(12);
+			margin: 10px 0;
+
+			span {
+				margin-right: 10px;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
 
 
 		ul {
@@ -219,7 +259,8 @@ html {
 
 				.project {
 					.column(12);
-					padding-bottom: 20px;
+					border-top: 10px solid @greyVeryLight + 20%;
+					padding: 20px 0;
 
 
 					h1 {
@@ -227,7 +268,7 @@ html {
 
 						a {
 
-							color: @greyLight;
+							color: @greyDark;
 //							text-decoration: none;
 
 							i {
@@ -244,7 +285,7 @@ html {
 
 					h2 {
 						font-size: 18px;
-						color: @greyLight + 20%;
+						color: @greyDark;
 
 //						.website { color: ; }
 						.production { color: @green; }
@@ -296,6 +337,11 @@ html {
 								line-height: 65px;
 								text-align: center;
 
+								i {
+									font-size: 40px;
+									line-height: 65px;
+								}
+
 								&:hover {
 									color: @white;
 								}
@@ -306,6 +352,11 @@ html {
 
 								&:hover {
 									color: @green;
+
+									@media @mq-mobile {
+										color: white;
+										background-color: @greyVeryLight;
+									}
 								}
 							}
 
@@ -314,6 +365,10 @@ html {
 
 								&:hover {
 									background-color: @green;
+
+									@media @mq-mobile {
+										background-color: @greyVeryLight;
+									}
 								}
 
 								&.active {
@@ -358,6 +413,10 @@ html {
 						.issueTitle {
 							display: inline;
 							line-height: 24px;
+
+							a {
+								color: @greyDark;
+							}
 						}
 					}
 				}
@@ -658,6 +717,10 @@ nav, nav#whatever_clone {
 
 #banner {
 	.full_width;
+
+	@media @mq-mobile {
+		display: none;
+	}
 
 	height: 255px;
 	background-image: url('@{baseURL}images/banner.png');

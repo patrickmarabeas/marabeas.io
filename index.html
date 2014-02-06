@@ -13,16 +13,16 @@
 
 	<!-- IE7 polyfill for json -->
 	<!--[if lt IE 8]>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.6/json3.min.js"></script>
+	<script src="resources/json3-v3.2.6.min.js"></script>
 	<![endif]-->
 	<!-- Media Queries polyfill -->
 	<!--<script type="text/javascript" src="scripts/css3-mediaqueries.js"></script>-->
 	<!-- AngularJS -->
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.5/angular.min.js"></script>
+	<script type="text/javascript" src="resources/angularJS-v1.2.5.min.js"></script>
 	<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-touch.js"></script>-->
 	<script type="text/javascript" src="scripts/angular-touch.js"></script>
 	<!-- Modernizer -->
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+	<script type="text/javascript" src="resources/modernizr-v2.6.2.min.js"></script>
 	<!-- Project Files -->
 	<script type="text/javascript" src="scripts/ng-FitText.js"></script>
 	<script type="text/javascript" src="scripts/ng-Lettering.js"></script>
@@ -38,7 +38,7 @@
 	<!--<link rel="stylesheet" type="text/css" href="styles/main.css" />-->
 	<!-- Client Side -->
 	<link rel="stylesheet/less" type="text/css" href="styles/main.less" />
-	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.5.0/less.min.js"></script>
+	<script src="resources/lesscss-v1.5.0.min.js"></script>
 
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
@@ -112,11 +112,11 @@
 			<nav id="whatever" data-adopt data-adopt-maintain="height" data-navfix>
 				<div class="page">
 					<ul>
-						<li class="item" data-scrollto data-spy="top"><a href="#top">top</a></li>
-						<li class="item" data-scrollto data-spy="one"><a href="##one">stuff</a></li>
-						<li class="item" data-scrollto data-spy="two"><a href="##two">navigation element</a></li>
-						<li class="item" data-scrollto data-spy="three"><a href="##three">element</a></li>
-						<li class="item" data-scrollto data-spy="four"><a href="##four">something</a></li>
+						<li class="item"><a href="#top">top</a></li>
+						<li class="item"><a href="##one">stuff</a></li>
+						<li class="item"><a href="##two">navigation</a></li>
+						<li class="item"><a href="##three">element</a></li>
+						<li class="item"><a href="##four">something</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -156,8 +156,22 @@
 
 
 						<ul data-ng-controller="DribbbleController">
+							<li class="title">Dribbble</li>
 							<li class="dribbbles" data-ng-repeat="image in dribbbles">
 								<a href="{{ image.url }}"><img src="{{ image.image }}" /></a>
+							</li>
+							<li class="title">Websites</li>
+							<li class="websites">
+								<a href="http://weshunthesun.com"><img src="images/wsts.jpg"/></a>
+							</li>
+							<li class="websites">
+								<a href="http://chastya.com"><img src="images/chastya.jpg"/></a>
+							</li>
+							<li class="websites">
+								<a href="http://mbefund.net"><img src="images/mbefund.jpg"/></a>
+							</li>
+							<li class="websites">
+								<a href="http://totally-awesome-tees.com"><img src="images/tat.jpg"/></a>
 							</li>
 						</ul>
 
@@ -165,17 +179,16 @@
 
 
 					<div id="github" ng-controller="GitController">
-
-						<!--<span data-ng-click="sort = 'last_modified'; reverse=!reverse">SORT DATE</span>-->
-						<!--<span data-ng-click="sort = 'data.watchers'; reverse=true">MOST POPULAR</span>-->
-						<!--<br/>-->
-
-						<!--Search: <input type="text" data-ng-model="searchProjects" />-->
-
+						<div class="gitNav">
+							<span data-ng-click="sort = 'last_modified'; reverse=!reverse">SORT DATE</span>
+							<span data-ng-click="sort = 'data.watchers'; reverse=true">MOST POPULAR</span>
+							<input type="text" data-ng-model="search" />
+							<br/>
+						</div>
 
 
 						<ul>
-							<li data-ng-repeat="git in gits | orderBy:sort:reverse | filter:searchProjects"
+							<li data-ng-repeat="git in gits | orderBy:sort:reverse | filter:{$:search}"
 								data-ng-switch
 								data-on="git.source">
 
@@ -201,42 +214,48 @@
 
 									<ul class="tabs">
 
-										<li class="tab">
+										<li class="tab"
+											title="stared {{ git.data.stargazers_count }} times">
 											<span class="number">{{ git.data.stargazers_count }}</span>
 											<span class="title">stars</span>
 										</li>
 
 										<!-- FOR SOME REASON $INDEX IS BEING TREATED AS INDEX BEFORE ORDERBY - PERHAPS NG-INIT HAPPENS TOO EARLY? -->
 										<!--<li class="tab hasContent" ng-class="{ active:commits }" data-ng-click="commits=!commits" data-ng-init="commits=!$index">-->
-										<li class="tab hasContent" ng-class="{ active:commits }" data-ng-click="commits=!commits" data-commits-auto-open="{{ $index }}">
+										<li class="tab hasContent"
+											title="{{ git.commits.length }} commits"
+											data-ng-class="{ active:commits }"
+											data-ng-click="commits=!commits"
+											data-commits-auto-open="{{ $index }}">
 											<span class="number">{{ git.commits.length }}</span>
 											<span class="title">commits</span>
 
 										</li>
 
-										<li class="tab hasContent" ng-class="{ active:issues }" data-ng-click="issues=!issues">
+										<li class="tab hasContent"
+											title="{{ git.issues.length }} open issues"
+											data-ng-class="{ active:issues }"
+											data-ng-click="issues=!issues">
 											<span class="number">{{ git.issues.length }}</span>
 											<span class="title">issues</span>
 										</li>
 
-										<li class="tab">
+										<li class="tab" title="{{ git.data.forks_count }} forks">
 											<span class="number">{{ git.data.forks_count }}</span>
 											<span class="title">forks</span>
 										</li>
 
-										<li class="tab hasContent" data-ng-show="git.data.homepage">
-											<a href="{{ git.data.homepage }}">demo</a>
+										<li class="tab hasContent"
+											title="view demo"
+											data-ng-show="git.data.homepage">
+											<a href="{{ git.data.homepage }}"><i class="fa fa-cogs"></i></a>
 										</li>
 
 									</ul>
 
-
-
 									<ul  data-ng-show="detail">
 										<li>this is some detail</li>
 									</ul>
-
-
 
 									<ul data-ng-show="commits">
 										<li class="commits"
@@ -244,7 +263,6 @@
 											data-ng-repeat="commit in git.commits | limitTo:'10'">
 											<a href="{{ commit.html_url }}"><i class="fa fa-code"></i> {{ commit.commit.message }}</a></li>
 									</ul>
-
 
 									<ul data-ng-show="issues">
 										<li class="issues"
@@ -262,17 +280,11 @@
 
 											</ul>
 
-
-
 										</li>
+
 									</ul>
 
-									<!--{{ git.lastdified }}-->
-									<!--{{ git.commits }}-->
-
 								</div>
-
-
 
 							</li>
 
@@ -280,23 +292,9 @@
 
 					</div>
 
-
-
-
-
-
 				</div>
 
 			</div>
-
-
-
-
-
-			<div id="one"></div>
-			<div id="two"></div>
-			<div id="three"></div>
-			<div id="four"></div>
 
 		</div>
 
