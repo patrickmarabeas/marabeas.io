@@ -21,6 +21,10 @@ html {
 			#drawer {
 				display: none;
 			}
+
+			#clickShield {
+				display: none;
+			}
 		}
 	}
 
@@ -57,6 +61,15 @@ html {
 					.transition(all,0.1s,linear,0s);
 					.transform( translate3d(0px,0px,0px) );
 
+					#clickShield {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						z-index: 100;
+					}
+
 					* { // improve transition performance
 						.transform( translateZ(0) );
 					}
@@ -73,6 +86,10 @@ html {
 
 					#page {
 						.transform( translate3d(@drawerW,0px,0px) );
+
+						#clickShield {
+							display: block;
+						}
 					}
 				}
 			}
@@ -168,6 +185,19 @@ html {
 #content {
 	.full_width();
 	background-color: @white;
+
+	&:after {
+		content: '';
+		position: absolute;
+		top: -30px;
+		left: 50%;
+		width: 50px;
+		height: 50px;
+		background-color: @black;
+		.border-radius(25px);
+		z-index: 10;
+		margin-left: -25px;
+	}
 
 	#feed {
 		.column(4);
@@ -310,11 +340,15 @@ html {
 
 						li.tab {
 							.column(2,right);
-							text-align: right;
+							text-align: center;
 							color: white;
 							background-color: @greyVeryLight;
 							.user-select(none);
 							height: 65px;
+
+							span {
+								text-align: right;
+							}
 
 							span.number {
 								display: block;
@@ -362,6 +396,8 @@ html {
 
 							&.hasContent {
 								cursor: pointer;
+								position: relative;
+								z-index: 0;
 
 								&:hover {
 									background-color: @green;
@@ -369,10 +405,24 @@ html {
 									@media @mq-mobile {
 										background-color: @greyVeryLight;
 									}
+
+
 								}
 
 								&.active {
 									background-color: @green;
+
+									&:before {
+										content: '';
+										position: absolute;
+										bottom: -6px;
+										width: 20px;
+										height: 20px;
+										background-color: @green;
+										.border-radius(10px);
+										z-index: -10;
+										margin-left: -10px;
+									}
 								}
 							}
 
@@ -521,6 +571,7 @@ html {
 		.column(6);
 		padding-top: 60px;
 		padding-bottom: 60px;
+		overflow: visible;
 
 		h1 {
 
@@ -546,6 +597,8 @@ html {
 		@media @mq-mobile {
 			.column(12);
 			padding-bottom: 30px;
+			position: relative;
+
 
 			h1 {
 				span {
@@ -553,6 +606,7 @@ html {
 					margin-bottom: 1px;
 				}
 			}
+
 		}
 	}
 
